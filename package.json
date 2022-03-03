@@ -16,5 +16,13 @@
   "bugs": {
     "url": "https://github.com/jessicafuung/webutvikling-api-design/issues"
   },
-  "homepage": "https://github.com/jessicafuung/webutvikling-api-design#readme"
+  "homepage": "https://github.com/jessicafuung/webutvikling-api-design#readme",
+  "devDependencies": {
+    "parcel": "^2.3.2"
+  },
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-router-dom": "^6.2.2"
+  }
 }
