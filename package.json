@@ -1,12 +1,29 @@
 {
   "name": "webutvikling-api-design",
   "version": "1.0.0",
-  "description": "",
+  "description": "* [ ] Create react application with parcel * [ ] Jest * [ ] Snapshot tests     * Testing rendering * [ ] Simulator testing     * Testing submission * [ ] GitHub Actions * [ ] Coverage coveralls.io * [ ] Prettier * [ ] Typescript * [ ] Eslint (?)",
   "main": "index.js",
   "scripts": {
+    "dev": "parcel index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jessicafuung/webutvikling-api-design.git"
+  },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jessicafuung/webutvikling-api-design/issues"
+  },
+  "homepage": "https://github.com/jessicafuung/webutvikling-api-design#readme",
+  "devDependencies": {
+    "jest": "^27.5.1",
+    "parcel": "^2.3.2"
+  },
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-router-dom": "^6.2.2"
+  }
 }
