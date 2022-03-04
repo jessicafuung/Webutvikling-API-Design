@@ -2,4 +2,3 @@
 node_modules/
 dist/
 .parcel-cache/
-/__test__/__snapshots__/

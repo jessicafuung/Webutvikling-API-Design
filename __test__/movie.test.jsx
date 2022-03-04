@@ -1,7 +1,7 @@
 import ReactDOM from "react-dom";
 import React from "react";
 
-import {ListMovies} from "../application";
+import {ListMovies, NewMovieForm} from "../application";
 
 
 describe("movies application", () => {
@@ -15,4 +15,10 @@ describe("movies application", () => {
         expect(element.innerHTML).toMatchSnapshot();
     })
 
+
+    it("show new movie form", () => {
+        const element = document.createElement("div");
+        ReactDOM.render(<NewMovieForm />, element);
+        expect(element.innerHTML).toMatchSnapshot();
+    })
 })
