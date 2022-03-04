@@ -39,7 +39,7 @@ function MovieCard(props) {
     </div>;
 }
 
-function ListMovies() {
+export function ListMovies() {
     return <div>
         <h1>Movies</h1>
         {MOVIES.map(movie => <MovieCard key={movie.title} movie={movie}/>)}
