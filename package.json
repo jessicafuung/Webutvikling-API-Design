@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "parcel index.html",
-    "test": "jest"
+    "test": "jest",
+    "verify": "jest --collectCoverage"
   },
   "repository": {
     "type": "git",
@@ -36,6 +37,9 @@
     ]
   },
   "jest":{
-    "testEnvironment":"jsdom"
+    "testEnvironment":"jsdom",
+    "collectCoverageFrom": [
+      "*.jsx"
+    ]
   }
 }
