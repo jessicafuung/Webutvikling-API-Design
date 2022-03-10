@@ -1,11 +1,24 @@
 import {Link, Route, Routes} from "react-router-dom";
+import {useState} from "react";
+import {randomQuestion} from "./question";
 
 function ShowAnswer() {
     return <h1>Answer</h1>;
 }
 
 function NewQuiz() {
-    return <h1>New Quiz</h1>
+
+    const [question] = useState(randomQuestion());
+
+    return <div>
+        <h1>{question.question}</h1>
+        {Object.keys(question.answers)
+            .filter(a => question.answers[a])
+            .map(a => <div key={a}>
+               <h2>{question.answers[a]}</h2>
+            </div>)
+        }
+    </div>
 }
 
 function FrontPage() {
@@ -23,6 +36,7 @@ function FrontPage() {
 }
 
 export function App() {
+
     return (
         <Routes>
             <Route path="/" element={<FrontPage />}></Route>
