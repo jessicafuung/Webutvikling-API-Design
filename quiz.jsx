@@ -1,13 +1,33 @@
-import {Link, Route, Routes} from "react-router-dom";
+import {Link, Route, Routes, useNavigate} from "react-router-dom";
 import {useState} from "react";
-import {randomQuestion} from "./question";
+import {isCorrectAnswer, randomQuestion} from "./question";
+
 
 function ShowAnswer() {
-    return <h1>Answer</h1>;
+    return <div>
+        <Routes>
+            <Route path={"correct"} element={<h>Correct!</h>}/>
+            <Route path={"wrong"} element={<h>Wrong!</h>}/>
+        </Routes>
+
+        <div><Link to={"/"}>Show score</Link></div>
+        <div><Link to={"/question"}>New question</Link></div>
+    </div>;
 }
 
-function NewQuiz() {
+function NewQuiz({setQuestionAnswered, setCorrectAnswers}) {
 
+    function handlerAnswer(answer) {
+        setQuestionAnswered(q => q + 1);
+        if (isCorrectAnswer(question, answer)) {
+            setCorrectAnswers(q => q + 1);
+            navigate("/answer/correct");
+        } else {
+            navigate("/answer/wrong")
+        }
+    }
+
+    const navigate = useNavigate();
     const [question] = useState(randomQuestion());
 
     return <div>
@@ -15,33 +35,35 @@ function NewQuiz() {
         {Object.keys(question.answers)
             .filter(a => question.answers[a])
             .map(a => <div key={a}>
-               <h2>{question.answers[a]}</h2>
+                <button onClick={() => handlerAnswer(a)} style={{fontSize: "1.5rem"}}>{question.answers[a]}</button>
             </div>)
         }
     </div>
 }
 
-function FrontPage() {
+function FrontPage({questionAnswered, correctAnswers}) {
     return <div>
         <h1>Quiz</h1>
+        <h2>You have answered {correctAnswers} of {questionAnswered} correctly!</h2>
         <div>
             <Link to={"/question"}>
                 <button type="button" style={{fontSize: "1.5rem"}}>New quiz</button>
-            </Link>
-            <Link to={"/answer"}>
-                <button type="button" style={{fontSize: "1.5rem"}}>Answer</button>
             </Link>
         </div>
     </div>
 }
 
 export function App() {
+    const [questionAnswered, setQuestionAnswered] = useState(0);
+    const [correctAnswers, setCorrectAnswers] = useState(0);
 
     return (
         <Routes>
-            <Route path="/" element={<FrontPage />}></Route>
-            <Route path="/question" element={<NewQuiz />}></Route>
-            <Route path="/answer" element={<ShowAnswer />}></Route>
+            <Route path="/"
+                   element={<FrontPage questionAnswered={questionAnswered} correctAnswers={correctAnswers}/>} />
+            <Route path="/question"
+                   element={<NewQuiz setQuestionAnswered={setQuestionAnswered} setCorrectAnswers={setCorrectAnswers} />} />
+            <Route path="/answer/*" element={<ShowAnswer />} />
         </Routes>
     );
 }
