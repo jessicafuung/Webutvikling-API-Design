@@ -3,10 +3,20 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "dependencies": {
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jessicafuung/webutvikling-api-design.git"
+  },
+  "author": "Jessica",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jessicafuung/webutvikling-api-design/issues"
+  },
+  "homepage": "https://github.com/jessicafuung/webutvikling-api-design#readme"
 }
