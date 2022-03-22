@@ -8,7 +8,7 @@
     "clean": "rimraf dist .parcel-cache",
     "format:check": "prettier --check *.{jsx,js} __test__/**/*.{jsx, js}",
     "format": "prettier --write *.{jsx,js} __test__/**/*.{jsx, js}",
-    "verify": "npm run test:coverage",
+    "verify": "npm run format:check && npm run test:coverage",
     "test:coverage": "jest --coverage",
     "test": "jest"
   },
