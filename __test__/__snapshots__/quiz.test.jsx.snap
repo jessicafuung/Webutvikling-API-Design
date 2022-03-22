@@ -24,10 +24,3 @@ exports[`Quiz application shows question 1`] = `
   <div data-testid=\\"answer_c\\"><button style=\\"font-size: 1.5rem;\\">Maybe</button></div>
 </div>"
 `;
-
-exports[`Quiz application snapshot test 1`] = `
-"<div>
-  <h1>Quiz</h1>
-  <div data-testid=\\"status\\">You have answered 3 of 10 correctly!</div><a href=\\"/question\\"><button type=\\"button\\" style=\\"font-size: 1.5rem;\\">New quiz</button></a>
-</div>"
-`;
