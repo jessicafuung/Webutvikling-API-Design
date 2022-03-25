@@ -9,10 +9,8 @@ app.use(bodyParser.json());
 
 //respond to a get request
 app.get("/login", (req, res) => {
-    const { username } = req.cookies;
-
-    const user = users.find(u => u.username === username);  //oops! we don't want to show users password
-    const { fullName } = user;
+    const user = users.find(u => u.username === req.cookies.username);  //oops! we don't want to show users password
+    const { fullName, username } = user;
 
     res.json({ username, fullName });
 });
@@ -54,9 +52,12 @@ app.post("/login", (req, res) => {
     }
 
     res.end();
-})
+});
 
-//For å lytte til en port (template literals)
+// app using static files under directory public
+app.use(express.static("public"));
+
+// listening to port (template literals)
 const server = app.listen(process.env.PORT || 3000, () => {
     console.log(`server started at http://localhost:${server.address().port}`);
-})
+});
