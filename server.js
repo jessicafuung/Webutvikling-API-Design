@@ -5,6 +5,9 @@ import bodyParser from "body-parser";
 const app = express();
 app.use(cookieParser());
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
 
 
 //respond to a get request
