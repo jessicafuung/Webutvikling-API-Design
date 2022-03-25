@@ -1,22 +1,32 @@
 import express from "express";
+import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 
 const app = express();
+app.use(cookieParser());
 app.use(bodyParser.json());
+
 
 //respond to a get request
 app.get("/login", (req, res) => {
-    res.send({
-        username: "admin"
-    });
+    const { username } = req.cookies;
+
+    const user = users.find(u => u.username === username);  //oops! we don't want to show users password
+    const { fullName } = user;
+
+    res.json({ username, fullName });
 });
 
+
+// user database
 const users = [
     {
-        username: "admin",
-        password: "secret123"
+        username: "administrator",
+        password: "secret123",
+        fullName: "Test Person"
     }
 ]
+
 
 //set something so that GET /login returns user name
 app.post("/login", (req, res) => {
@@ -25,12 +35,18 @@ app.post("/login", (req, res) => {
     // 3. set a cookie
     // 4. read the cookie in /login
 
+    /*
     const body = req.body;
     const username = body.username;
     const password = body.password;
+     */
+
+    // equal to those three lines over!
+    const { password, username } = req.body;
 
     //Among the users, find a matching username. It's password should also match.
-    if (users.find(u => username === username).password === password) {
+    if (users.find(u => u.username === username).password === password) {
+        res.cookie("username", username) //
         res.sendStatus(200)
     } else {
         //else return
