@@ -22,9 +22,10 @@ app.get("/login", (req, res) => {
 // user database
 const users = [
     {
-        username: "administrator",
-        password: "secret123",
-        fullName: "Test Person"
+        username: "administrator", password: "secret123", fullName: "Test Person"
+    },
+    {
+        username: "dummyuser", password: "dummy", fullName: "Noen André"
     }
 ]
 
@@ -45,9 +46,12 @@ app.post("/login", (req, res) => {
     // equal to those three lines over!
     const { password, username } = req.body;
 
-    //Among the users, find a matching username. It's password should also match.
-    if (users.find(u => u.username === username).password === password) {
-        res.cookie("username", username) //
+    //Among the users, find a matching username.
+    const user = users.find(u => u.username === username);
+
+    //It's password should also match.
+    if (user && user.password === password) {
+        res.cookie("username", username) // username as cookie (username=administrator) in HTTP msg
         res.sendStatus(200)
     } else {
         //else return
