@@ -11,18 +11,20 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 
+// middleware
+app.use((req, res, next) => {
+    const { username } = req.signedCookies; // retrieve username from cookie
+    req.user = users.find(u => u.username === username);    // find matching username
+    next();
+})
+
 
 //respond to a get request
 app.get("/login", (req, res) => {
-    const cookieUsername = req.signedCookies.username;
-
-    if (!cookieUsername) {
+    if (!req.user) {
         return res.sendStatus(401);
     }
-
-    const user = users.find(u => u.username === cookieUsername);  //oops! we don't want to show users password
-    const { fullName, username } = user;
-
+    const { fullName, username } = req.user;
     res.json({ username, fullName });
 });
 
@@ -72,9 +74,7 @@ app.post("/login", (req, res) => {
 // listing the users. have to login and remove passwords
 app.get("/users", (req, res) => {
     // logged in or not?
-    const cookieUsername = req.signedCookies.username;
-    const user = users.find(u => u.username === cookieUsername);
-    if (!user) {
+    if (!req.user) {
         return res.sendStatus(401);
     }
 
