@@ -69,6 +69,19 @@ app.post("/login", (req, res) => {
     res.end();
 });
 
+// listing the users. have to login and remove passwords
+app.get("/users", (req, res) => {
+    // logged in or not?
+    const cookieUsername = req.signedCookies.username;
+    const user = users.find(u => u.username === cookieUsername);
+    if (!user) {
+        return res.sendStatus(401);
+    }
+
+    // retrieve those values, and put it into those
+    res.json(users.map( ({ username, fullName}) => ({ username, fullName })));
+});
+
 
 // app using static files under directory public
 app.use(express.static("public"));
