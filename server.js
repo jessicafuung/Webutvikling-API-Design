@@ -1,9 +1,11 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
+import dotenv from "dotenv";
+dotenv.config();
 
 const app = express();
-app.use(cookieParser());
+app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: false
@@ -12,7 +14,13 @@ app.use(bodyParser.urlencoded({
 
 //respond to a get request
 app.get("/login", (req, res) => {
-    const user = users.find(u => u.username === req.cookies.username);  //oops! we don't want to show users password
+    const cookieUsername = req.signedCookies.username;
+
+    if (!cookieUsername) {
+        return res.sendStatus(401);
+    }
+
+    const user = users.find(u => u.username === cookieUsername);  //oops! we don't want to show users password
     const { fullName, username } = user;
 
     res.json({ username, fullName });
@@ -51,7 +59,7 @@ app.post("/login", (req, res) => {
 
     //It's password should also match.
     if (user && user.password === password) {
-        res.cookie("username", username) // username as cookie (username=administrator) in HTTP msg
+        res.cookie("username", username, { signed: true }) // username as cookie (username=administrator) in HTTP msg
         res.sendStatus(200)
     } else {
         //else return
@@ -60,6 +68,7 @@ app.post("/login", (req, res) => {
 
     res.end();
 });
+
 
 // app using static files under directory public
 app.use(express.static("public"));
