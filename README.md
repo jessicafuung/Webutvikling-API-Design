@@ -1,6 +1,6 @@
 # Web Development and API design
 Hello! In this repository I'll be posting codes from the lectures and exercises :)
-Through this course we've created single-page application with React backed by APIs implemented with React. The application has stored data in MongoDB and be deployed on Heroku.
+Through this course I've created single-page application with React backed by APIs implemented with React. The application has stored data in MongoDB and be deployed on Heroku.
 
 Through this course I've been proficient at building web applications with JavaScript, React and Express. During the lectures, I've seen live coding of how such applications may be constructed and many topics been explained along the way.
 
