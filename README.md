@@ -30,3 +30,4 @@ Through this course I've been proficient at building web applications with JavaS
 
 ### Exercise 4: Express
 * [Go to branch](https://github.com/jessicafuung/webutvikling-api-design/tree/exercises/04)
+Almost done, missing tests and cookies!
