@@ -1,0 +1,20 @@
+GET {{server}}/quiz/random
+
+###
+POST{{server}}/quiz/answer
+Content-Type: application/json
+
+{
+  "id": 974,
+  "answer": "answer_b"
+}
+
+###
+POST{{server}}/quiz/answer
+Content-Type: application/json
+
+{
+  "id": 974,
+  "answer": "answer_a"
+}
+

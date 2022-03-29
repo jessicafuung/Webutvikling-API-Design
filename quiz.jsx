@@ -1,9 +1,9 @@
 import { Link, Route, Routes, useNavigate } from "react-router-dom";
-import React, {useContext, useState} from "react";
+import React, { useContext, useState } from "react";
 import { isCorrectAnswer, randomQuestion } from "./question";
 
 //Styre spørsmål fra testen
-export const QuestionContext = React.createContext({randomQuestion})
+export const QuestionContext = React.createContext({ randomQuestion });
 
 function ShowAnswer() {
   return (
@@ -35,7 +35,7 @@ export function NewQuiz({ setQuestionAnswered, setCorrectAnswers }) {
   }
 
   const navigate = useNavigate();
-  const {randomQuestion} = useContext(QuestionContext);
+  const { randomQuestion } = useContext(QuestionContext);
   const [question] = useState(randomQuestion());
 
   return (
@@ -58,13 +58,19 @@ export function NewQuiz({ setQuestionAnswered, setCorrectAnswers }) {
 }
 
 export function FrontPage({ questionAnswered, correctAnswers }) {
-  return <div>
+  return (
+    <div>
       <h1>Quiz</h1>
-      <div data-testid={"status"}>You have answered {correctAnswers} of {questionAnswered} correctly!</div>
+      <div data-testid={"status"}>
+        You have answered {correctAnswers} of {questionAnswered} correctly!
+      </div>
       <Link to={"/question"}>
-        <button type="button" style={{ fontSize: "1.5rem" }}>New quiz</button>
+        <button type="button" style={{ fontSize: "1.5rem" }}>
+          New quiz
+        </button>
       </Link>
-    </div>;
+    </div>
+  );
 }
 
 export function App() {
