@@ -1,7 +1,7 @@
 Heroku 
 ======
 
-* [ ] Simple Express application
+* [x] Simple Express application
 * [ ] Static pages
 * [ ] Deploy to Heroku
 * [ ] API methods GET POST /login
