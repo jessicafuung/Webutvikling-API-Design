@@ -1,7 +1,3 @@
-[![Node.js CI](https://github.com/jessicafuung/webutvikling-api-design/actions/workflows/node.js.yml/badge.svg?branch=master)](https://github.com/jessicafuung/webutvikling-api-design/actions/workflows/node.js.yml)
-
-[![Coverage Status](https://coveralls.io/repos/github/jessicafuung/webutvikling-api-design/badge.svg?branch=master)](https://coveralls.io/github/jessicafuung/webutvikling-api-design?branch=master)
-
 # Web Development and API design
 Hello! In this repository I'll be posting codes from the lectures and exercises :)
 Through this course we've created single-page application with React backed by APIs implemented with React. The application has stored data in MongoDB and be deployed on Heroku.
