@@ -5,3 +5,4 @@
 .env
 /server/node_modules/
 /webutvikling-api-design.iml
+/node_modules/
