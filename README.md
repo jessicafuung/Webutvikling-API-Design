@@ -7,6 +7,6 @@ Heroku
 * [x] Bonus: Prettier with Husky
 * [x] Static pages
 * [x] React application with React Router
-  * [ ] <BrowserRouter /> affects the server (fix in Express)
-* [ ] Connect frontend to backend
+  * [x] <BrowserRouter /> affects the server (fix in Express)
+* [x] Connect frontend to backend
 * [ ] Jest with Express

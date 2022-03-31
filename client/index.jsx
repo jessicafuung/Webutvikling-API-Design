@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 
@@ -16,14 +16,38 @@ function FrontPage() {
 }
 
 function Login() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    fetch("/api/login", {
+      method: "post",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ username, password }),
+    });
+  }
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <h1>Login</h1>
       <div>
-        Username <input type="text" />
+        Username{" "}
+        <input
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
       </div>
       <div>
-        Password <input type="password" />
+        Password{" "}
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
       </div>
       <div>
         <button>Login </button>
