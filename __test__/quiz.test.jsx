@@ -1,4 +1,4 @@
-import { App, FrontPage, NewQuiz, QuestionContext } from "../quiz";
+import { App, FrontPage, NewQuiz, QuestionContext } from "../client/quiz";
 import * as ReactDOM from "react-dom";
 import { MemoryRouter } from "react-router-dom";
 import React from "react";

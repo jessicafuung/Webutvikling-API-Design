@@ -3,4 +3,8 @@
 /dist/
 /node_modules/
 /coverage/
-/.env
+/server/.env
+/client/.parcel-cache/
+/client/dist/
+/server/node_modules/
+/client/node_modules/
