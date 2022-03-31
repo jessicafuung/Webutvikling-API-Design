@@ -17,6 +17,9 @@ Through this course I've been proficient at building web applications with JavaS
 ### Lecture 4: Implementing server code on Express
 * [Go to branch](https://github.com/jessicafuung/webutvikling-api-design/tree/lecture04)
 
+### Lecture 5: Publishing my application on Heroku
+* [Go to branch](https://github.com/jessicafuung/webutvikling-api-design/tree/lectures/05)
+
 ## Exercises
 
 ### Exercise 1: React quiz
@@ -31,3 +34,6 @@ Through this course I've been proficient at building web applications with JavaS
 ### Exercise 4: Express
 * [Go to branch](https://github.com/jessicafuung/webutvikling-api-design/tree/exercises/04)
 Almost done, missing tests and cookies!
+
+### Exercise 5: Heroku
+* [Go to branch]()
