@@ -1,15 +1,17 @@
-# Hello and welcome to the Quiz broadcast
+Få en Express JS applikasjon med en React frontend til å kjøre på Heroku.
 
-Flytt funksjonalitet for quiz til serveren-siden med ExpressJS. Du trenger følgende endepunkt:
+Ta utgangspunkt i Quiz koden fra de siste øvingene. Oppgaven er å lage en ExpressJS server som kan gi brukeren spørsmål og mulighet til å svare på dem med en enkel React frontend.
 
-* GET /quiz/random - returner et tilfeldig spørsmål uten å inkludere korrekt svar
-* POST /quiz/answer - send inn svar med {id: <id>, answer: "answer_a"|"answer_b"|"answer_c"|"answer_d"|"answer_e"}. Skal returnere {result: "correct"|"incorrect"}
-* GET /quiz/score - returnerer {answered: <number>, correct: <number>} (krever cookies)
+Bruk questions.js   Last ned questions.js fra tidligere øvinger og lag API et Express app under /server for GET /question/random, POST /question/<id>/answer og GET /score.
 
-Bruk koden for quiz fra øving 1-3 som utgangspunkt. questions.js  Last ned questions.js
+Forsøk å deploye Express-appen til Heroku. Du trenger at `npm run build` kjører `cd server && npm ci` og at `npm start` starter server.js.
 
-Siden koden ikke har front-end må du teste den på andre måter enn gjennom GUI. Opprett en .http-fil i IntelliJ for testing og bruk Jest med Supertest (Lenker til en ekstern side.). Det anbefales at du skriver testene før du skiver koden. Bruk expect.objectContaining({id: expect.any(Number)}) etc for å kunne teste /quiz/random.
+Lag en React applikasjon under client. Bruk react, react-dom og react-router-dom.
 
-Det anbefales at du prøver å bruke Prettier (Lenker til en ekstern side.), Typescript og GitHub Actions i løsningen. Prøv også gjerne Husky (Lenker til en ekstern side.)
+Legg til en public folder og en middleware for å server index.html når brukerens side ikke finnes i Express.
 
-Løsningsforlag på Github: https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/exercise/answer/04
+Gjør de nødvendig justeringene for at appen skal kjøre på Heroku: `npm build` må kjøre `npm install --include=dev` og `parcel`.
+
+Dersom du kommer såpass langt kan du forsøke å implementere funksjonalitet i React appen som gjenspeiler API-et.
+
+Løsningsforslag: https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures/commits/exercise/answer/05
