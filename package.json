@@ -5,14 +5,17 @@
   "main": "server/server.js",
   "type": "module",
   "scripts": {
-    "start": "node server/server.js",
-    "dev": "nodemon server/server.js",
+    "start": "cd server && npm start",
+    "build": "npm run build:client && npm run build:server",
+    "build:server": "cd server && npm install",
+    "build:client": "cd client && npm install --include=dev && npm run build",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "verify": "npm run test:coverage",
     "clean": "rimraf dist .parcel-cache",
-    "format:check": "prettier --check *.{jsx,js} __test__/**/*.{jsx,js}",
-    "format": "prettier --write *.{jsx,js} __test__/**/*.{jsx,js}"
+    "format:check": "prettier --check \"**/*.{jsx,js}\" \"__test__/**/*.{jsx,js}\"",
+    "prettier:write": "prettier --write \"**/*.{jsx,js}\" \"__test__/**/*.{jsx,js}\"",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +24,7 @@
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
     "babel-jest": "^27.5.1",
+    "husky": "^7.0.4",
     "jest": "^27.5.1",
     "prettier": "^2.5.1"
   },
