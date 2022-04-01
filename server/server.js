@@ -1,9 +1,5 @@
 import express from "express";
-import {
-  isCorrectAnswer,
-  Questions,
-  randomQuestion,
-} from "../client/question.js";
+import { isCorrectAnswer, Questions, randomQuestion } from "./question.js";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";

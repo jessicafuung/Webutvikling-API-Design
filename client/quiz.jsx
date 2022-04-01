@@ -1,6 +1,6 @@
 import { Link, Route, Routes, useNavigate } from "react-router-dom";
 import React, { useContext, useState } from "react";
-import { isCorrectAnswer, randomQuestion } from "./question";
+import { isCorrectAnswer, randomQuestion } from "../server/question";
 
 //Styre spørsmål fra testen
 export const QuestionContext = React.createContext({ randomQuestion });
