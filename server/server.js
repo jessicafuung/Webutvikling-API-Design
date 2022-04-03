@@ -36,6 +36,8 @@ app.post("/quiz/answer", (req, res) => {
 // printing score
 app.get("/quiz/score", (req, res) => {});
 
+app.use(express.static("../server/public"));
+
 const server = app.listen(process.env.PORT || 3000, () => {
   console.log(`server started at http://localhost:${server.address().port}`);
 });
