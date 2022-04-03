@@ -3,6 +3,7 @@ import { isCorrectAnswer, Questions, randomQuestion } from "./question.js";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
+import path from "path";
 dotenv.config();
 
 const app = express();
@@ -36,7 +37,14 @@ app.post("/quiz/answer", (req, res) => {
 // printing score
 app.get("/quiz/score", (req, res) => {});
 
-app.use(express.static("../server/public"));
+app.use(express.static("../client/dist"));
+app.use((req, res, next) => {
+  if (!req.path.startsWith("/quiz")) {
+    res.sendFile(path.resolve("../client/dist/index.html"));
+  } else {
+    next();
+  }
+});
 
 const server = app.listen(process.env.PORT || 3000, () => {
   console.log(`server started at http://localhost:${server.address().port}`);
