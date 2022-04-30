@@ -1,25 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
-
-{
-  /*
-        Vet ikke hvem brukeren er:
-        - Lurt å ha <div> rundt linkene at de skal være hver for seg på web
-   */
-}
-function LoginLinks() {
-  return (
-    <div>
-      <div>
-        <Link to={"/login"}>Login</Link>
-      </div>
-      <div>
-        <Link to={"/register"}>Register now</Link>
-      </div>
-    </div>
-  );
-}
 
 {
   /*
