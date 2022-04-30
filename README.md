@@ -9,11 +9,11 @@
 * [x] deploy to heroku
   * [x] npm build kjører -> client npm install --include=dev && server npm install
   * [x] npm start -> node server.js
-* [ ] Serve react application from Express 
-* [ ] GET /api/login from front page 
-  * [ ] Fetch data from server
-  * [ ] Loading time (serveren svarer ikke umiddelbart)
-  * [ ] Handle error 
+* [x] Serve react application from Express 
+* [x] GET /api/login from front page 
+  * [x] Fetch data from server
+  * [x] Loading time (serveren svarer ikke umiddelbart)
+  * [x] Handle error 
 * [ ] POST /api/login from login form
   * [ ] Loading time
   * [ ] Error handling
