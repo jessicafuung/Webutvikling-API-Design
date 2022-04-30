@@ -18,6 +18,34 @@ function LoginLinks() {
   );
 }
 
+async function fetchJSON(url) {
+  const res = await fetch(url);
+  return await res.json();
+}
+
+{
+  /* Custom hook*/
+}
+function useLoader(loadingFn) {
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState();
+  const [error, setError] = useState();
+
+  useEffect(async () => {
+    setLoading(true);
+
+    try {
+      setData(await loadingFn());
+    } catch (error) {
+      setError(error);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  return { loading, error, data };
+}
+
 {
   /*
         Forside:
@@ -30,33 +58,15 @@ function LoginLinks() {
   */
 }
 function FrontPage() {
-  const [loading, setLoading] = useState(true);
-  const [user, setUser] = useState();
-  const [error, setError] = useState();
+  const { loading, error, data } = useLoader(
+    async () => await fetchJSON("/api/login")
+  );
+  const user = data;
 
-  useEffect(async () => {
-    setLoading(true);
-
-    try {
-      const res = await fetch("api/login");
-      setUser(await res.json());
-    } catch (error) {
-      setError(error);
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
-  {
-    /* Dersom det loader, vis denne: */
-  }
   if (loading) {
     return <div>Loading...</div>;
   }
 
-  {
-    /* Dersom error, vis tekst */
-  }
   if (error) {
     return (
       <div style={{ border: "1px solid red", background: "pink" }}>
@@ -68,11 +78,6 @@ function FrontPage() {
   return (
     <div>
       <h1>Movie Application</h1>
-      {error && (
-        <div style={{ border: "1px solid red", background: "pink" }}>
-          An error occurred: {error.toString()}
-        </div>
-      )}
       {user ? <div>{user.fullName}</div> : <LoginLinks />}
     </div>
   );
