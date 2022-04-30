@@ -1,6 +1,9 @@
 /.idea/
 /.parcel-cache/
-/dist/
+dist/
 node_modules/
 /coverage/
 /webutvikling-api-design.iml
+/client/.parcel-cache/
+/client/dist/
+/client/node_modules/
