@@ -19,3 +19,4 @@
   * [ ] Error handling
 * [ ] Refactor and polish fetch and error handling
   * [ ] custom React hook `useLoader`
+ 
