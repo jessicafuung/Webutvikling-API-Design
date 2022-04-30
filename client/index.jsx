@@ -55,6 +55,9 @@ function useLoader(loadingFn) {
         - i return: hvis user er satt, returner navnet til brukeren. Hvis ikke, vis <LoginLinks/>
         - loading: fordi det tar litt tid å vise det som er inni useEffect. Den laster ikke lenger når useEffect er lastet inn.
            Får å unngå at den havner i en situasjon hvor den loader for alltid, så kan  man sette en try catch finally rundt.
+
+        Refactored:
+        - const {loading, error, data} henter ut tre objekter fra useLoader. foo.loading, foo.error, foo.data f.eks
   */
 }
 function FrontPage() {
