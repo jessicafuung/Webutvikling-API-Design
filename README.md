@@ -1,39 +1,20 @@
-# Web Development and API design
-Hello! In this repository I'll be posting codes from the lectures and exercises :)
-Through this course I've created single-page application with React backed by APIs implemented with React. The application has stored data in MongoDB and be deployed on Heroku.
+# Communication between frontend and backend
 
-Through this course I've been proficient at building web applications with JavaScript, React and Express. During the lectures, I've seen live coding of how such applications may be constructed and many topics been explained along the way.
-
-## Lectures
-
-### Lecture 1: A tour of React, Express and Heroku
-
-### Lecture 2: React and Jest
-* [Go to branch](https://github.com/jessicafuung/webutvikling-api-design/tree/lecture02)
-
-### Lecture 3: Code quality
-* [Go to branch](https://github.com/jessicafuung/webutvikling-api-design/tree/lecture03)
-
-### Lecture 4: Implementing server code on Express
-* [Go to branch](https://github.com/jessicafuung/webutvikling-api-design/tree/lecture04)
-
-### Lecture 5: Publishing my application on Heroku
-* [Go to branch](https://github.com/jessicafuung/webutvikling-api-design/tree/lectures/05)
-
-## Exercises
-
-### Exercise 1: React quiz
-* [Go to branch](https://github.com/jessicafuung/webutvikling-api-design/tree/exercises/01)
-
-### Exercise 2: Jest tests
-* [Go to branch](https://github.com/jessicafuung/webutvikling-api-design/tree/exercises/02)
-
-### Exercise 3: Code quality
-* [Go to branch](https://github.com/jessicafuung/webutvikling-api-design/tree/exercises/03)
-
-### Exercise 4: Express
-* [Go to branch](https://github.com/jessicafuung/webutvikling-api-design/tree/exercises/04)
-Almost done, missing tests and cookies!
-
-### Exercise 5: Heroku
-* [Go to branch]()
+* [ ] Create frontend and backend
+  * [ ] root project with concurrently, prettier and husky
+  * [ ] client project with parcel, react and react-dom react router
+  * [ ] server project with nodemon, express, body-parser, cookie-parser, dotenv
+* [ ] get endpoint i express
+* [ ] husky + prettier
+* [ ] deploy to heroku
+  * [ ] npm build kjører -> client npm install --include=dev && server npm install
+  * [ ] npm start -> node server.js
+* [ ] GET /api/login from front page 
+  * [ ] Fetch data from server
+  * [ ] Loading time (serveren svarer ikke umiddelbart)
+  * [ ] Handle error 
+* [ ] POST /api/login from login form
+  * [ ] Loading time
+  * [ ] Error handling
+* [ ] Refactor and polish fetch and error handling
+  * [ ] custom React hook `useLoader`
