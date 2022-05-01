@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import { fetchJSON } from "./http";
@@ -63,10 +63,61 @@ function FrontPage() {
 {
   /*
       Logg inn:
+      * Konvensjonen sier hvis vi har noe som heter onFoo, så skal vi lage noe som heter
+      handleFoo.
+
+      * e.preventDefault() = når vi trykker på knappen i browseren, blir det gjort en GET req og url'en får en ? bak. Det ønsker vi å unngå.
+
+      * Vi ønsker å ta vare på verdiene i formen i en useState() hook.
+
+      * Bruk "value", "onChange". Hvor "value" tar verdien til staten(slik den er nå),
+      og "onChange" setter den nye verdien til setUsername ved å hente via target til eventen.
+
+      * Ved trykk av onSubmit ønsker vi å POST req. Fetch kan brukes både til POST og GET. Dette
+      kan spesifiseres ved 'method: "post"'. Husk async og await. 'JSON.stringify' oversetter input til
+      json, og 'content-type' må igjen spesifisere det. 
   */
 }
 function Login() {
-  return <h1>Welcome to login page</h1>;
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    await fetch("/api/login", {
+      method: "post",
+      body: JSON.stringify({ username, password }),
+      headers: {
+        "content-type": "application/json",
+      },
+    });
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <h1>Please log in</h1>
+      <div>
+        Username:{" "}
+        <input
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+      </div>
+      <div>
+        Password:{" "}
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </div>
+      <div>
+        <button>Log in</button>
+      </div>
+      <pre>{JSON.stringify({ username, password }, undefined, " ")}</pre>
+    </form>
+  );
 }
 
 {
