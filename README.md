@@ -1,9 +1,9 @@
 # Lecture 7: Storing data MongoDB
 =================================
 
-* [ ] React and Express app
-    * [ ] npm init && npm install
-* [ ] Deploy to heroku via Heroku GIT instead of GitHub
+* [x] React and Express app
+    * [x] npm init && npm install
+* [x] Deploy to heroku via Heroku GIT instead of GitHub
     * heroku command line tool
     * heroku login
     * heroku git:remote
