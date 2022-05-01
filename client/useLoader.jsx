@@ -8,7 +8,9 @@ export function useLoader(loadingFn) {
   const [data, setData] = useState();
   const [error, setError] = useState();
 
-  useEffect(async () => {
+  useEffect(reload, []);
+
+  async function reload() {
     setLoading(true);
 
     try {
@@ -18,8 +20,8 @@ export function useLoader(loadingFn) {
     } finally {
       setLoading(false);
     }
-  }, []);
+  }
 
   console.log(error);
-  return { loading, error, data };
+  return { loading, error, data, reload };
 }

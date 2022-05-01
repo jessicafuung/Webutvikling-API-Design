@@ -40,6 +40,11 @@ app.get("/api/login", (req, res) => {
   setTimeout(respond, 400);
 });
 
+app.delete("/api/login", (req, res) => {
+  res.clearCookie("username");
+  res.sendStatus(200);
+});
+
 app.post("/api/login", (req, res) => {
   //1. Leser av username og password fra request body
   const { username, password } = req.body;

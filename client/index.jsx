@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter,
+  Link,
+  Route,
+  Routes,
+  useNavigate,
+} from "react-router-dom";
 import { fetchJSON } from "./http";
 import { useLoader } from "./useLoader";
 
@@ -35,7 +41,7 @@ function LoginLinks() {
   */
 }
 function FrontPage() {
-  const { loading, error, data } = useLoader(
+  const { loading, error, data, reload } = useLoader(
     async () => await fetchJSON("/api/login")
   );
   const user = data;
@@ -55,7 +61,23 @@ function FrontPage() {
   return (
     <div>
       <h1>Movie Application</h1>
-      {user ? <div>{user.fullName}</div> : <LoginLinks />}
+      {user ? (
+        <div>
+          {user.fullName} ({user.username})
+          <button
+            onClick={() => {
+              fetch("/api/login", {
+                method: "delete",
+              });
+              reload();
+            }}
+          >
+            Logout
+          </button>
+        </div>
+      ) : (
+        <LoginLinks />
+      )}
     </div>
   );
 }
@@ -82,15 +104,20 @@ function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  const navigate = useNavigate();
+
   async function handleSubmit(e) {
     e.preventDefault();
-    await fetch("/api/login", {
+    const res = await fetch("/api/login", {
       method: "post",
       body: JSON.stringify({ username, password }),
       headers: {
         "content-type": "application/json",
       },
     });
+    if (res.ok) {
+      navigate("/");
+    }
   }
 
   return (
