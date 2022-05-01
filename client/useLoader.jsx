@@ -20,5 +20,6 @@ export function useLoader(loadingFn) {
     }
   }, []);
 
+  console.log(error);
   return { loading, error, data };
 }
