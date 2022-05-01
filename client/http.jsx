@@ -8,7 +8,7 @@ export class HttpError extends Error {
 export async function fetchJSON(url) {
   const res = await fetch(url);
 
-  if (res.ok === 204) {
+  if (res.status === 204) {
     return null;
   } else if (res.ok) {
     return await res.json();
