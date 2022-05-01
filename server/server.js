@@ -1,7 +1,11 @@
 import express from "express";
 import * as path from "path";
+import { MoviesApi } from "./moviesApi.js"; //la til .js
 
 const app = express();
+
+// root url blir da /api/movies. Slik at '/api/movies/new' blir nå '/new'
+app.use("/api/movies", MoviesApi());
 
 app.use(express.static("../client/dist/"));
 
