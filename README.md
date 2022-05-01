@@ -14,9 +14,9 @@
   * [x] Fetch data from server
   * [x] Loading time (serveren svarer ikke umiddelbart)
   * [x] Handle error 
-* [ ] POST /api/login from login form
-  * [ ] Loading time
-  * [ ] Error handling
-* [ ] Refactor and polish fetch and error handling
-  * [ ] custom React hook `useLoader`
+* [x] POST /api/login from login form
+  * [x] Loading time
+  * [x] Error handling
+* [x] Refactor and polish fetch and error handling
+  * [x] custom React hook `useLoader`
  
