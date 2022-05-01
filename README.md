@@ -20,6 +20,9 @@ Through this course I've been proficient at building web applications with JavaS
 ### Lecture 5: Publishing my application on Heroku
 * [Go to branch](https://github.com/jessicafuung/webutvikling-api-design/tree/lectures/05)
 
+### Lecture 6: Robust interaction between the client and the server
+* [Go to branch](https://github.com/jessicafuung/webutvikling-api-design/tree/lectures/06)
+
 ## Exercises
 
 ### Exercise 1: React quiz
@@ -33,7 +36,11 @@ Through this course I've been proficient at building web applications with JavaS
 
 ### Exercise 4: Express
 * [Go to branch](https://github.com/jessicafuung/webutvikling-api-design/tree/exercises/04)
-Almost done, missing tests and cookies!
+* Almost done, missing tests and cookies!
 
 ### Exercise 5: Heroku
 * [Go to branch]()
+* Unsure if finished?
+
+### Exercise 6: Communication between client and server
+* Not started
