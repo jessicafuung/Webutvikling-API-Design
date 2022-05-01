@@ -5,12 +5,17 @@ const app = express();
 
 app.get("/api/login", (req, res) => {
   function respond() {
-    res.json({
-      username: "admin",
-      fullName: "Noen Andre Persson",
-    });
+    if (req.user) {
+      // hvis vi finner brukeren fra request, returner
+      const { username, fullName } = req.user;
+      return res.json;
+    } else {
+      //hvis vi ikke vet hvem brukeren er, returneer "204 no content"
+      res.sendStatus(204);
+    }
   }
-  setTimeout(respond, 3000);
+
+  setTimeout(respond, 400);
 });
 
 // de to app.use under brukes til å serve React kode via Express!
