@@ -1,0 +1,28 @@
+{
+  "name": "webutvikling-api-design",
+  "version": "1.0.0",
+  "description": "=================================",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently npm:dev:client npm:dev:server",
+    "dev:client": "cd client && npm run dev",
+    "dev:server": "cd server && npm run dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jessicafuung/webutvikling-api-design.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jessicafuung/webutvikling-api-design/issues"
+  },
+  "homepage": "https://github.com/jessicafuung/webutvikling-api-design#readme",
+  "devDependencies": {
+    "concurrently": "^7.1.0",
+    "husky": "^7.0.4",
+    "prettier": "^2.6.2"
+  }
+}
