@@ -1,11 +1,26 @@
 import express from "express";
 import * as path from "path";
 import { MoviesApi } from "./moviesApi.js"; //la til .js
+import { MongoClient } from "mongodb";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 
-// root url blir da /api/movies. Slik at '/api/movies/new' blir nå '/new'
-app.use("/api/movies", MoviesApi());
+const mongoClient = new MongoClient(process.env.MONGODB_URL);
+
+// .then gir en callback når denne er ferdig.
+// på denne måten kan vi liste ut alle databasene på MongoDB
+mongoClient.connect().then(async () => {
+  console.log("Connected to MongoDB");
+  const databases = await mongoClient.db().admin().listDatabases(); //asynkron funksjon
+  console.log(databases);
+
+  // root url blir da /api/movies. Slik at '/api/movies/new' blir nå '/new'
+  // sender inn databasen til MoviesApi
+  app.use("/api/movies", MoviesApi(mongoClient.db("pg6301-07")));
+});
 
 app.use(express.static("../client/dist/"));
 
