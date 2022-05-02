@@ -59,13 +59,35 @@ function Login() {
   );
 }
 
+function LoginCallback() {
+  /* henter ut token etter login med en useEffect og destruction syntax */
+  useEffect(async () => {
+    /* viktig å hoppe over første tegnet '#', hvis ikke blir det undefined */
+    const { access_token } = Object.fromEntries(
+      new URLSearchParams(window.location.hash.substring(1))
+    );
+    console.log(access_token);
+
+    /* deretter bruke en fetch for å sende/ poste access token til serveren */
+    await fetch("/api/login", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ access_token }),
+    });
+  });
+
+  return <h1>Login Callback</h1>;
+}
+
 function Application() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path={"/"} element={<FrontPage />} />
         <Route path={"/login"} element={<Login />} />
-        <Route path={"/login/callback"} element={<h1>Login Callback</h1>} />
+        <Route path={"/login/callback"} element={<LoginCallback />} />
         <Route path={"/profile"} element={<h1>Profile</h1>} />
       </Routes>
     </BrowserRouter>

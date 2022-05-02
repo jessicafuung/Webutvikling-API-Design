@@ -10,10 +10,10 @@ https://console.cloud.google.com/getting-started?hl=NO&supportedpurview=project
 * [x] Create server.js and index.html
 * [x] Routes: FrontPage, Login, LoginCallback, Profile
 * [x] Deploy to Heroku (https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures#deploy-to-heroku)
-* [ ] Redirect user to authorization url
-* [ ] Application registration in Google Developer Console
-* [ ] Pick up token from callback redirect
-* [ ] Save token in cookie
+* [x] Redirect user to authorization url
+* [x] Application registration in Google Developer Console
+* [x] Pick up token from callback redirect
+* [x] Save token in cookie
 * [ ] Fetch user information from userinfo call with token
 * [ ] Move configuration to server
 * [ ] Log out?
