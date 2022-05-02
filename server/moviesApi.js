@@ -21,6 +21,12 @@ export function MoviesApi(mongoDatabase) {
     // via mongoDB connect, sendt inn fra server.js
     // hente ut movies collection, søk og gjør om til array
     // den er async fordi vi må vente å få den tilbake
+
+    //KAN LEGGE INN DENNE:
+    // .limit(100) = sette en grense på 100
+    // .map(({title, year, genre, poster }) => ({
+    //  title, year, plot, genre, poster,
+    // }))
     const movies = await mongoDatabase.collection("movies").find().toArray();
     res.json(movies);
   });

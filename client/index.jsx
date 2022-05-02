@@ -60,6 +60,10 @@ async function fetchJSON(url) {
   return await res.json();
 }
 
+function MovieCard({ movie: { title } }) {
+  return <h3>{title}</h3>;
+}
+
 function ListMovies() {
   /* Er den i ferd med å laste? Fått noe feil? Eller data? Husk å send inn en loadingFunction som fetcher api */
   const { loading, error, data } = useLoading(async () =>
@@ -82,11 +86,9 @@ function ListMovies() {
   return (
     <div>
       <h1>Movies in the database</h1>
-      <ul>
-        {data.map((movie) => (
-          <li>{movie.title}</li>
-        ))}
-      </ul>
+      {data.map((movie) => (
+        <MovieCard key={movie.title} movie={movie} />
+      ))}
     </div>
   );
 }

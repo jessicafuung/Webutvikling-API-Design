@@ -19,6 +19,8 @@ mongoClient.connect().then(async () => {
 
   // root url blir da /api/movies. Slik at '/api/movies/new' blir nå '/new'
   // sender inn databasen til MoviesApi
+  // velge hvilken database å connecte till = MoviesApi(mongoClient.db(process.env.MONGODB_DATABASE || "pg6301-07"))
+  // og legg inn MONGODB_DATABASE=databasenavn i .env fil
   app.use("/api/movies", MoviesApi(mongoClient.db("pg6301-07")));
 });
 
