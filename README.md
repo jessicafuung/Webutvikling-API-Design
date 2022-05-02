@@ -1,9 +1,11 @@
 # OpenID Connect - log on with Google
 
+https://pg6301-08.herokuapp.com
+
 * [x] Create Express + React project (https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures#quickly-creating-a-express--react-application)
 * [x] Create server.js and index.html
-* [ ] Routes: FrontPage, Login, LoginCallback, Profile
-* [ ] Deploy to Heroku (https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures#deploy-to-heroku)
+* [x] Routes: FrontPage, Login, LoginCallback, Profile
+* [x] Deploy to Heroku (https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures#deploy-to-heroku)
 * [ ] Redirect user to authorization url
 * [ ] Application registration in Google Developer Console
 * [ ] Pick up token from callback redirect
