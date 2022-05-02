@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 
@@ -27,8 +27,6 @@ async function fetchJSON(url) {
 }
 
 function Login() {
-  const [redirectUrl, setRedirectUrl] = useState();
-
   /* Redirecte til en ny side ved trykk på "do login", og ikke automatisk inne på /login */
   useEffect(async () => {
     /* "authorization_endpoint" på google JSON. Ønsker å fetche istedenfor å hardkode. Destruction syntax for å hente ut det vi ønsker med JSON */
@@ -48,17 +46,15 @@ function Login() {
       redirect_uri: window.location.origin + "/login/callback",
     };
 
+    /* redirecte brukeren til login google */
     /* URLSearchParams = gjør om fra object til JSON*/
-    setRedirectUrl(
-      authorization_endpoint + "?" + new URLSearchParams(parameters)
-    );
+    window.location.href =
+      authorization_endpoint + "?" + new URLSearchParams(parameters);
   }, []);
 
   return (
     <div>
-      <h1>Login updated!</h1>
-      <a href={redirectUrl}>Do login</a>
-      <div>{redirectUrl}</div>
+      <h1>Please wait...</h1>
     </div>
   );
 }
