@@ -6,6 +6,8 @@ https://accounts.google.com/.well-known/openid-configuration
 
 https://console.cloud.google.com/getting-started?hl=NO&supportedpurview=project
 
+http://portal.azure.com
+
 * [x] Create Express + React project (https://github.com/kristiania-pg6301-2022/pg6301-react-and-express-lectures#quickly-creating-a-express--react-application)
 * [x] Create server.js and index.html
 * [x] Routes: FrontPage, Login, LoginCallback, Profile
@@ -18,8 +20,8 @@ https://console.cloud.google.com/getting-started?hl=NO&supportedpurview=project
 * [ ] Set user on Context
 
 ## Log in with Active Directory (school account)
-* [ ] Review openid connect
-* [ ] Setup prebuilt application with Active Directory
+* [x] Review openid connect
+* [x] Setup prebuilt application with Active Directory
 * [ ] Review lecture 8
 * [ ] Fix issues from lecture 8
   * [ ] Move configuration to server

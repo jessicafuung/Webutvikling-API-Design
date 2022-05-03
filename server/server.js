@@ -36,14 +36,19 @@ app.get("/api/login", async (req, res) => {
 
   // hente userinfo via endpoint fra google doc
   // må sende inn token for å få hentet riktig info
-  const userinfo = await fetchJSON(userinfo_endpoint, {
+  const userinfo = await fetch(userinfo_endpoint, {
     headers: {
       Authorization: `Bearer ${access_token}`,
     },
   });
 
-  //response
-  res.json(userinfo);
+  //response with error handling
+  if (userinfo.ok) {
+    res.json(await userinfo.json());
+  } else {
+    console.log(`Failed to fetch ${userinfo.status} ${userinfo.statusText}`);
+    res.sendStatus(500);
+  }
 });
 
 // tar imot access token fra <LoginCallback/> og bruker den til å sette cookien.
