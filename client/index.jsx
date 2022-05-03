@@ -71,6 +71,8 @@ function LoginCallback() {
 
   /* henter ut token etter login med en useEffect og destruction syntax */
   useEffect(async () => {
+    const [error, setError] = useState();
+
     /* viktig å hoppe over første tegnet '#', hvis ikke blir det undefined */
     const { access_token } = Object.fromEntries(
       new URLSearchParams(window.location.hash.substring(1))
@@ -78,7 +80,7 @@ function LoginCallback() {
     console.log(access_token);
 
     /* deretter bruke en fetch for å sende/ poste access token til serveren */
-    await fetch("/api/login", {
+    const result = await fetch("/api/login", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -86,8 +88,22 @@ function LoginCallback() {
       body: JSON.stringify({ access_token }),
     });
 
-    /* naviger tilbake til forsiden når ferdig */
-    navigate("/");
+    if (result.ok) {
+      /* naviger tilbake til forsiden når ferdig og det er OK */
+      navigate("/");
+    } else {
+      // da setter vi erroren og henter den ut igjen under
+      setError(`Failed POST /api/login: ${result.status} ${result.statusText}`);
+    }
+
+    if (error) {
+      return (
+        <div>
+          <h1>Error</h1>
+          <div>{error}</div>
+        </div>
+      );
+    }
   });
 
   return <h1>Please wait...</h1>;
