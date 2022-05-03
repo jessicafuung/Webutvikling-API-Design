@@ -25,13 +25,13 @@ async function fetchJSON(url, options) {
 
 const discoveryEndpoint =
   "https://accounts.google.com/.well-known/openid-configuration";
+const client_id = process.env.CLIENT_ID;
 
 //Disse elementene tilhører konfigurasjonen
 app.get("/api/config", (req, res) => {
   res.json({
     response_type: "token",
-    client_id:
-      "775167009240-u1lscab9fno21qd3e1pd0ihf194aq6hn.apps.googleusercontent.com",
+    client_id: client_id,
     discovery_endpoint: discoveryEndpoint,
   });
 });
