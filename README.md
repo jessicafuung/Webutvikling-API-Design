@@ -14,7 +14,16 @@ https://console.cloud.google.com/getting-started?hl=NO&supportedpurview=project
 * [x] Application registration in Google Developer Console
 * [x] Pick up token from callback redirect
 * [x] Save token in cookie
-* [ ] Fetch user information from userinfo call with token
-* [ ] Move configuration to server
-* [ ] Log out?
+* [x] Fetch user information from userinfo call with token
 * [ ] Set user on Context
+
+## Log in with Active Directory (school account)
+* [ ] Review openid connect
+* [ ] Setup prebuilt application with Active Directory
+* [ ] Review lecture 8
+* [ ] Fix issues from lecture 8
+  * [ ] Move configuration to server
+  * [ ] Log out?
+  * [ ] Error handling
+* [ ] Change Identity Provider (ID-porten)
+ 
