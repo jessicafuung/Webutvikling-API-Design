@@ -167,26 +167,35 @@ function Profile() {
   );
 }
 
-/* Disse elementene tilhører konfigurasjonen */
 /* ved bruk av context kan man gi alt i samme kode tilgang til disse parameterne */
-const LoginContext = React.createContext({
-  response_type: "token",
-  client_id:
-    "775167009240-u1lscab9fno21qd3e1pd0ihf194aq6hn.apps.googleusercontent.com",
-  discovery_endpoint:
-    "https://accounts.google.com/.well-known/openid-configuration",
-});
+const LoginContext = React.createContext();
 
 function Application() {
+  // bruke useLoader til å laste inn siden og fetchJSON til å koble til serveren
+  const { loading, error, data } = useLoader(() => {
+    fetchJSON("/api/config");
+  });
+
+  if (loading) {
+    return <div>Please wait...</div>;
+  }
+
+  if (error) {
+    return <div>Error! {error.toString()}</div>;
+  }
+
+  /* bruke dataen fra server som konfigurasjon */
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path={"/"} element={<FrontPage />} />
-        <Route path={"/login"} element={<Login />} />
-        <Route path={"/login/callback"} element={<LoginCallback />} />
-        <Route path={"/profile"} element={<Profile />} />
-      </Routes>
-    </BrowserRouter>
+    <LoginContext.Provider value={data}>
+      <BrowserRouter>
+        <Routes>
+          <Route path={"/"} element={<FrontPage />} />
+          <Route path={"/login"} element={<Login />} />
+          <Route path={"/login/callback"} element={<LoginCallback />} />
+          <Route path={"/profile"} element={<Profile />} />
+        </Routes>
+      </BrowserRouter>
+    </LoginContext.Provider>
   );
 }
 
