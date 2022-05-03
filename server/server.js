@@ -23,7 +23,7 @@ async function fetchJSON(url, options) {
   return await res.json();
 }
 
-const discoveryEndpoint =
+const discovery_endpoint =
   "https://accounts.google.com/.well-known/openid-configuration";
 const client_id = process.env.CLIENT_ID;
 
@@ -31,8 +31,9 @@ const client_id = process.env.CLIENT_ID;
 app.get("/api/config", (req, res) => {
   res.json({
     response_type: "token",
-    client_id: client_id,
-    discovery_endpoint: discoveryEndpoint,
+    client_id,
+    discovery_endpoint,
+    scope: "email profile",
   });
 });
 
@@ -43,7 +44,7 @@ app.get("/api/login", async (req, res) => {
   const { access_token } = req.signedCookies;
 
   // bruke funksjonen som vi lagde i index.jsx, til å lete gjennom google docen
-  const { userinfo_endpoint } = await fetchJSON(discoveryEndpoint);
+  const { userinfo_endpoint } = await fetchJSON(discovery_endpoint);
 
   // hente userinfo via endpoint fra google doc
   // må sende inn token for å få hentet riktig info

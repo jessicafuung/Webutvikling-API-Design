@@ -26,7 +26,7 @@ function FrontPage() {
 
 function Login() {
   /* henter ut disse fra LoginContext */
-  const { discovery_endpoint, client_id, response_type } =
+  const { discovery_endpoint, client_id, response_type, scope } =
     useContext(LoginContext);
 
   /* Redirecte til en ny side inne på /login */
@@ -41,7 +41,7 @@ function Login() {
       /* redirect_uri: send brukeren tilbake til denne application, men denne url'n */
       response_type,
       client_id,
-      scope: "email profile",
+      scope: scope,
       redirect_uri: window.location.origin + "/login/callback",
     };
 
@@ -66,10 +66,20 @@ function LoginCallback() {
   /* henter ut token etter login med en useEffect og destruction syntax */
   useEffect(async () => {
     /* viktig å hoppe over første tegnet '#', hvis ikke blir det undefined */
-    const { access_token } = Object.fromEntries(
+    const { access_token, error, error_description } = Object.fromEntries(
       new URLSearchParams(window.location.hash.substring(1))
     );
     console.log(access_token);
+
+    if (error || error_description) {
+      setError(`Error: ${error} ${error_description}`);
+      return;
+    }
+
+    if (!access_token) {
+      setError("Missing access token");
+      return;
+    }
 
     /* deretter bruke en fetch for å sende/ poste access token til serveren */
     const result = await fetch("/api/login", {
@@ -132,9 +142,7 @@ const LoginContext = React.createContext();
 
 function Application() {
   // bruke useLoader til å laste inn siden og fetchJSON til å koble til serveren
-  const { loading, error, data } = useLoader(() => {
-    fetchJSON("/api/config");
-  });
+  const { loading, error, data } = useLoader(() => fetchJSON("/api/config"));
 
   if (loading) {
     return <div>Please wait...</div>;
