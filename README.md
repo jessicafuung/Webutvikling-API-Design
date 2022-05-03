@@ -26,6 +26,6 @@ http://portal.azure.com
 * [ ] Fix issues from lecture 8
   * [ ] Move configuration to server
   * [ ] Log out?
-  * [ ] Error handling
+  * [x] Error handling
 * [ ] Change Identity Provider (ID-porten)
  

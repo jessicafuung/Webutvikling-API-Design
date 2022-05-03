@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import {
   BrowserRouter,
@@ -33,21 +33,22 @@ async function fetchJSON(url) {
 }
 
 function Login() {
-  /* Redirecte til en ny side ved trykk på "do login", og ikke automatisk inne på /login */
+  /* henter ut disse fra LoginContext */
+  const { discovery_endpoint, client_id, response_type } =
+    useContext(LoginContext);
+
+  /* Redirecte til en ny side inne på /login */
   useEffect(async () => {
-    /* "authorization_endpoint" på google JSON. Ønsker å fetche istedenfor å hardkode. Destruction syntax for å hente ut det vi ønsker med JSON */
-    const { authorization_endpoint } = await fetchJSON(
-      "https://accounts.google.com/.well-known/openid-configuration"
-    );
+    /* Ønsker å fetche istedenfor å hardkode "authorization_endpoint" på google doc */
+    const { authorization_endpoint } = await fetchJSON(discovery_endpoint);
 
     const parameters = {
       /* response_type: ønsker å få en token tilbake */
-      /* client_id: hentes fra google developer console */
+      /* client_id: hentes fra google developer console / LoginContext */
       /* scope: hva slags informasjon ønsker jeg å få tilbake om brukeren */
       /* redirect_uri: send brukeren tilbake til denne application, men denne url'n */
-      response_type: "token",
-      client_id:
-        "775167009240-u1lscab9fno21qd3e1pd0ihf194aq6hn.apps.googleusercontent.com",
+      response_type,
+      client_id,
       scope: "email profile",
       redirect_uri: window.location.origin + "/login/callback",
     };
@@ -67,12 +68,11 @@ function Login() {
 
 /* denne callback er mest for å vente på useEffect skal bli ferdig. Bruk useNavigate til å navigere seg vekk når ferdig */
 function LoginCallback() {
+  const [error, setError] = useState();
   const navigate = useNavigate();
 
   /* henter ut token etter login med en useEffect og destruction syntax */
   useEffect(async () => {
-    const [error, setError] = useState();
-
     /* viktig å hoppe over første tegnet '#', hvis ikke blir det undefined */
     const { access_token } = Object.fromEntries(
       new URLSearchParams(window.location.hash.substring(1))
@@ -166,6 +166,16 @@ function Profile() {
     </div>
   );
 }
+
+/* Disse elementene tilhører konfigurasjonen */
+/* ved bruk av context kan man gi alt i samme kode tilgang til disse parameterne */
+const LoginContext = React.createContext({
+  response_type: "token",
+  client_id:
+    "775167009240-u1lscab9fno21qd3e1pd0ihf194aq6hn.apps.googleusercontent.com",
+  discovery_endpoint:
+    "https://accounts.google.com/.well-known/openid-configuration",
+});
 
 function Application() {
   return (
